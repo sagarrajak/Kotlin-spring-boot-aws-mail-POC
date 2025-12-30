@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: aws-demo
+mail:
+  username: ${ZOHO_MAIL_API_USERNAME}
+  apikey: ${ZOHO_API_KEY}
