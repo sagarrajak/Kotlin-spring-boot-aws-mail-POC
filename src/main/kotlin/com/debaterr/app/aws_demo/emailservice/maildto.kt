@@ -55,3 +55,5 @@ data class ZeptoData(
     val additionalInfo: List<Any>, // Usually an empty list or map
     val message: String
 )
+
+
