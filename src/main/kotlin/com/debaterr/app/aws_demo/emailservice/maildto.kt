@@ -9,16 +9,24 @@ data class ZeptoEmailRequest(
     val htmlbody: String
 )
 
-data class ZeptoEmailTemplateRequest(
+data class ZeptoEmailTemplateRequest<T: Any>(
     val from: EmailAddress,
     val to: List<ToRecipient>,
     val cc: List<ToRecipient>?,
     val bcc: List<ToRecipient>?,
     val subject: String,
     @JsonProperty("template_key")
-    val templateId: String
+    val templateId: String,
+    @JsonProperty("track_clicks")
+    val trackClicks: Boolean,
+    @JsonProperty("track_opens")
+    val trackOpens: Boolean,
+    @JsonProperty("merge_info")
+    val mergeInfo: T?
 ) {
-    constructor(from: EmailAddress, to: List<ToRecipient>, subject: String, templateId: String) : this(from , to, null, null, subject, templateId)
+    constructor(from: EmailAddress, to: List<ToRecipient>, subject: String, templateId: String) : this(from , to, null, null, subject, templateId, false, false, null)
+    constructor(from: EmailAddress, to: List<ToRecipient>, subject: String, templateId: String, mergeInfo: T?) : this(from , to, null, null, subject, templateId, false, false, mergeInfo)
+    constructor(from: EmailAddress, to: List<ToRecipient>, subject: String, templateId: String,trackClicks: Boolean,trackOpens: Boolean, mergeInfo: T?) : this(from , to, null, null, subject, templateId, trackClicks, trackOpens, mergeInfo)
 }
 
 data class ToRecipient(

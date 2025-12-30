@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 
+class Otp(
+    val otp: String
+)
 @Service
 class EmailService(
     private val webClientBuilder: WebClient.Builder
@@ -23,13 +26,14 @@ class EmailService(
     private val senderDomain = "noreply@debaterr.com"
 
     fun sendSimpleMail(): ZeptoResponse? {
-        val requestBody = ZeptoEmailTemplateRequest(
+        val requestBody = ZeptoEmailTemplateRequest<Otp>(
             from = EmailAddress(address = "noreply@debaterr.com", name = "Debater app"),
             to = listOf(
                 ToRecipient(email_address = EmailAddress(address = "sagarrajak858@gmail.com", name = "Sagar"))
             ),
             subject = "Your Verification Code",
-            templateId = "2d6f.31a7ad804155724b.k1.780c1ba1-e54c-11f0-b14a-fae9afc80e45.19b6e09f229"
+            templateId = "2d6f.31a7ad804155724b.k1.780c1ba1-e54c-11f0-b14a-fae9afc80e45.19b6e09f229",
+            Otp("1234")
         )
         return webClient.post()
             .uri("/email/template")
