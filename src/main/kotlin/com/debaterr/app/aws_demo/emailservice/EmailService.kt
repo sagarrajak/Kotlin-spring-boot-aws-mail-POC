@@ -22,7 +22,6 @@ class EmailService(
 
     private val webClient = webClientBuilder.baseUrl("https://api.zeptomail.com/v1.1").build()
 
-//    private val zeptoToken = "wSsVR611qBL2CaZ9z2KrIr9pmQxVDgz3Fhl6jVKluiOoH/mQpcc9wRfIVFCuHKRNRTE/FzUVrbN/nkoChGFf2Y4omw0DDSiF9mqRe1U4J3x17qnvhDzJX2pVkRSOJYMPxw9qnWhoFs0j+g=="
     private val senderDomain = "noreply@debaterr.com"
 
     fun sendSimpleMail(): ZeptoResponse? {
